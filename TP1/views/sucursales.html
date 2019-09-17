@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sucursales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <div id="divRegistracion">
+            <div id="registrar">
+                <h4>Registrar Sucursal</h4>
+                <div>
+                    <p>GET</p>
+                    <button type="button" id="btn_get" class="btn btn-primary">GET</button></br>
+                    <textarea class="form-control rounded-0" id="areaGet"></textarea>
+                </div>
+
+                <div>
+                    <p>POST</p>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion:</label>
+                        <input type="text" id="descripcion" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Direccion:</label>
+                        <input type="text" id="direccion" class="form-control">
+                    </div>
+
+                    <button type="button" id="btn_post" class="btn btn-primary">POST</button></br>
+                </div>               
+
+                <div>
+                    <p>DELETE</p>
+                    <div class="form-group">
+                        <label for="idDelete">id:</label>
+                        <input type="text" id="idDelete" class="form-control">
+                    </div>
+                    <button type="button" id="btn_delete" class="btn btn-primary">DELETE</button></br>
+                </div>
+            </div>
+        </div>
+        <div id="divBienvenida" style="display: none">
+            <h5>Registracion Exitosa</h5>
+            <button type="button" id="btn_salir" class="btn btn-primary">Salir</button>
+        </div>       
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('#btn_post').click(function () {
+            if (isDivValidate()){
+                postSucursal();
+                $('#divRegistracion').hide();
+                $('#divBienvenida').show();
+            }
+        });
+
+        $('#btn_get').click(function () {
+            getSucursales();
+        });
+
+        $('#btn_delete').click(function () {
+            deleteSucursal();
+        });
+
+        $('#btn_salir').click(function () {
+            $('#divRegistracion').show();
+            $('#divBienvenida').hide();
+        });
+    });
+
+    function isDivValidate(){
+        return $('#descripcion').val() != "" && $('#direccion').val() != "";
+    }
+
+    function getSucursales(){               
+        fetch('http://localhost:5000/sucursal/')
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (datos) {
+                        let option = '';
+                        $.each(datos, function (index, sucursales) {
+                            option += 'id: ' + sucursales.id + ', descripcion: ' + sucursales.descripcion + ', direccion: ' + sucursales.direccion + '\n';
+                        });
+                        $('#areaGet').html(option);
+                    })
+            }
+        })
+    }
+
+    function postSucursal(){
+        let data = {
+            descripcion: $('#descripcion').val(),
+            direccion: $('#direccion').val()
+        }
+
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+                
+        fetch('http://localhost:5000/sucursal/', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            console.log(response);
+        })
+        .then(function(datos) {
+            console.log(datos);
+        })
+    }
+
+    function deleteSucursal(){
+        let id = $('#idDelete').val();
+
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+                
+        fetch('http://localhost:5000/sucursal/' + id, {
+            method: 'DELETE',
+            headers: headers
+        })
+    }
+</script>

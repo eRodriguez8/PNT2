@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script type="text/javascript" 
+                src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js">
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Aca se renderiza toda la aplicacion VueJS -->
+            <input type="text" v-model="peso" />
+            <input type="text" v-model="dolar" />
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    peso: '',
+                    dolar: '',
+                    precioDolar: 55.96
+                },
+                watch: {
+                    peso: function(val) {
+                        this.dolar = val * this.precioDolar;
+                    },
+                    dolar: function(val) {
+                        this.peso = val / this.precioDolar;
+                    }
+                }
+            });
+
+            window.vue = app;
+        </script>
+    </body>
+</html>

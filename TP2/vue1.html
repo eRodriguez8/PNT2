@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script type="text/javascript" 
+                src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js">
+        </script>
+    </head>
+    <body>
+        <h1>Primera APP VueJS</h1>
+        <div id="app">
+            <!-- Aca se renderiza toda la aplicacion VueJS -->
+            <h4>Nombre: {{ nombre }}</h4>
+            <h4>Apellido: {{ apellido }} </h4>
+            <hr/>
+            Nombre: <input type="text" v-model="nombre" />
+            <hr/>
+            Nombre completo: <b>{{ nombreCompleto() }}</b>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    nombre: 'John',
+                    apellido: 'Wick'
+                },
+                methods: {
+                    nombreCompleto: function() {
+                        return this.nombre + ' ' + this.apellido;
+                    }
+                },
+            });
+            window.vue = app;
+        
+        </script>
+
+    </body>
+</html>

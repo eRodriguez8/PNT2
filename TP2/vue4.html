@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script type="text/javascript" 
+                src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js">
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Aca se renderiza toda la aplicacion VueJS -->
+            <h4>Cliente:</h4>
+            <c_cliente></c_cliente>
+            <hr/>
+            <h4>Proveedor:</h4>
+            <c_proveedor></c_proveedor>
+        </div>
+
+        <script>
+            Vue.component('c_direccion', {
+                data: function() {
+                    return {
+                        calle: "falsa",
+                        altura: "123",
+                        localidad: "CABA",
+                    }
+                },
+                template: 
+                    '<div><h4>Calle: <input type="text" v-model="calle" /></h4>' +
+                    '<h4>Altura:<input type="text" v-model="altura" /></h4><h4>Localidad: ' +
+                    '<input type="text" v-model="localidad" /></h4></div>'
+            });
+
+            Vue.component('c_cliente', {
+                data: function() {
+                    return {
+                        codigo: "asterisco",
+                        razonsocial: "888",
+                        vendedor: "copito coper",
+                    }
+                },
+                template:
+                    '<div>' +
+                    '<h4>Codigo: <input type="text" v-model="codigo" /></h4>' +
+                    '<h4>Razon Social: <input type="text" v-model="razonsocial" /></h4>' +
+                    '<h4>Vendedor: <input type="text" v-model="vendedor" /></h4>' + 
+                    '<c_direccion calle="" altura="" localidad=""></c_direccion></div>'
+            });
+
+            Vue.component('c_proveedor', {
+                data: function() {
+                    return {
+                        codigo: "numeral",
+                        razonsocial: "777",
+                        rubro: "alguno",
+                    }
+                },
+                template:
+                    '<div><h4>Codigo: <input type="text" v-model="codigo" /></h4>' +
+                    '<h4>Razon Social: <input type="text" v-model="razonsocial" /></h4>' +
+                    '<h4>Rubro: <input type="text" v-model="rubro" /></h4>' + 
+                    '<c_direccion calle="" altura="" localidad=""></c_direccion></div>'
+            });
+
+            var app = new Vue({
+                el: '#app'
+            });
+        
+        </script>
+    </body>
+</html>

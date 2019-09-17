@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script type="text/javascript" 
+                src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js">
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Aca se renderiza toda la aplicacion VueJS -->
+            <h4>Nombre: {{ nombre }}</h4>
+            <h4>Apellido: {{ apellido }} </h4>
+            <hr/>
+            <c_uno edad="49"></c_uno>
+            <hr/>
+            <c_uno edad="50"></c_uno>
+        </div>
+
+        <script>
+            Vue.component('c_uno', {
+                props: {
+                    edad: String,
+                    altura: {
+                        type: Number,
+                        default: 120,
+                        required: false,
+                        validator: function(value) {
+                            return value >=100;
+                        }
+                    }
+                },
+                template: '<div><h4>Edad: {{ edad }}  </h4><h4>Altura: {{ altura }} </h4></div>'  
+                
+                
+            });
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    nombre: 'John',
+                    apellido: 'Wick',
+                    edad: 49
+                },
+                methods: {
+                    nombreCompleto: function() {
+                        return this.nombre + ' ' + this.apellido;
+                    }
+                },
+            });
+        
+        </script>
+
+    </body>
+</html>

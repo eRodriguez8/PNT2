@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CARRITO VUE-JS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    </head>    
+    <body>
+        <div class="container">
+            <div id="app">
+                <!-- Aca se renderiza toda la aplicacion VueJS -->
+                <div id="carrito">
+                    <label for="producto">Producto: </label>
+                    <input type="text" v-model="producto" class="form-control"/> <br>
+                    <label for="cantidad">Cantidad: </label>
+                    <input type="text" v-model="cantidad" class="form-control"/> <br>
+                    <label for="precio">Precio: </label>
+                    <input type="text" v-model="precio" class="form-control"/> <br>
+                    <div class="text-left">
+                        <label for="precio">SUBTOTAL: </label>
+                        <label id="subtotal" type="text" v-model="subtotal" class="badge badge-secondary">123.54</label>
+                    </div>
+                    <div class="text-right">
+                        <input value="Agregar" type="button" class="btn btn-primary" v-on:click="agregarProducto()"/>
+                    </div>
+                </div>
+                <hr>
+                <div v-if="productos.length > 0" id="lista">
+                    <label for="total">TOTAL: </label>
+                    <input type="text" readonly class="form-control-plaintext" id="idTotal" > <br>
+                    <label for="listaProductos">Lista de Productos: </label>
+                    <ul>
+                        <li v-for="nro in productos">
+                            {{ nro.producto }} {{ nro.cantidad }} {{ nro.precio }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    producto: '',
+                    cantidad: '',
+                    precio: 0,
+                    subtotal: 0,
+                    productos: [
+                    ],
+                },
+                methods: {
+                    agregarProducto: function() {
+                        this.productos.push({
+                            producto: this.producto,
+                            cantidad: this.cantidad,
+                            precio: this.precio
+                        })
+                    }
+                },
+                computed: {
+                    nombrecompleto: {
+                        get: function() {
+                            return this.nombre + ',' + this.apellido;
+                        },
+                        set: function(valor) {
+                            var x = valor.split(",");
+                            this.nombre = x[0];       //  Poner if para validar
+                            this.apellido = x[1];
+                        }
+                    }
+                },
+                watch: {
+                    productos: function(val) {
+                        this.dolar = val * this.precioDolar;
+                    }
+                }
+            });
+
+            window.vue = app;
+        </script>
+    </body>
+</html>
