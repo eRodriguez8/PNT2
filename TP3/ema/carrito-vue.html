@@ -14,24 +14,14 @@
                 <!-- Aca se renderiza toda la aplicacion VueJS -->
                 <div id="carrito">
                     <label for="producto">Producto: </label>
-                    <select v-model="producto" class="browser-default custom-select custom-select-lg mb-3">
-                        <option v-for="prod in productos" v-bind:value="prod.value">
-                            {{ prod.producto }}
-                        </option>
-                    </select>
-                    <label for="cantidad">Cantidad: </label>
-                    <select v-model="cantidad" class="browser-default custom-select custom-select-lg mb-3">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <label for="precio">Precio: </label>
                     <input type="text" v-model="producto" class="custom-select-lg form-control browser-default mb-3" />
+                    <label for="cantidad">Cantidad: </label>
+                    <input type="number" v-model="cantidad" class="custom-select-lg form-control browser-default mb-3" />
+                    <label for="precio">Precio: </label>
+                    <input type="number" v-model="precio" class="custom-select-lg form-control browser-default mb-3" />
                     <div class="text-left">
                         <label for="precio">SUBTOTAL: </label>
-                        <label id="subtotal" type="text" class="badge badge-secondary">{{ subtotal }}</label>
+                        <label id="subtotal" type="number" class="badge badge-secondary">{{ subtotal }}</label>
                     </div>
                     <div class="text-right">
                         <input value="Agregar" type="button" class="btn btn-primary" v-on:click="agregarProducto()"/>
@@ -44,7 +34,8 @@
                     <label for="listaProductos">Lista de Productos: </label>
                     <ul>
                         <li v-for="prod in productosAgregados">
-                            {{ prod.producto }} {{ prod.cantidad }} {{ prod.precio }}
+
+                            Producto: {{ prod.producto }} Cantidad: {{ prod.cantidad }} Precio: {{ prod.precio }}
                         </li>
                     </ul>
                 </div>
@@ -59,14 +50,7 @@
                     cantidad: 0,
                     precio: 0,
                     subtotal: 0,
-                    total: 0,
-                    productos: [
-                        { producto: 'Remera', value: '101' },
-                        { producto: 'Pantalon', value: '202' },
-                        { producto: 'Zapatillas', value: '303' },
-                        { producto: 'Buzo', value: '404' },
-                        { producto: 'Campera', value: '505' }
-                    ],                   
+                    total: 0,                  
                     productosAgregados: [
                     ],
                 },
@@ -75,27 +59,18 @@
                         this.productosAgregados.push({
                             cantidad: +this.cantidad,
                             producto: this.producto,
-                            precio: +this.producto * +this.cantidad
+                            precio: +this.precio * +this.cantidad
                         })
                         
-                        console.log(this.productosAgregados);
-
+                        this.total += this.productosAgregados[this.productosAgregados.length - 1].precio;
                         this.subtotal = 0;
+                        this.cantidad = 0;
+                        this.precio = 0;
+                        this.producto = '';
                     }
                 },
                 computed: {
-                    calcularTotal: {
-                        get: function() {
-                            productosAgregados.forEach(element => {
-                                this.total += element.precio
-                            });
-                        },
-                        set: function(valor) {
-                            var x = valor.split(",");
-                            this.nombre = x[0];       //  Poner if para validar
-                            this.apellido = x[1];
-                        }
-                    },
+
                 },
                 watch: {
                     producto: function(val) {
