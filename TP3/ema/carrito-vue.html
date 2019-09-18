@@ -43,7 +43,7 @@
         </div>
 
         <script>
-            var app = new Vue({
+            var app = new Vue({ 
                 el: '#app',
                 data: {
                     producto: '',
@@ -73,11 +73,9 @@
 
                 },
                 watch: {
-                    producto: function(val) {
-                        this.subtotal = +val;
-                    },
-                    cantidad: function(val) {
-                        this.subtotal *= +val;
+                    precio: function(val) {
+                        console.log(val)
+                        this.subtotal = this.cantidad * +val;
                     }
                 }
             });
