@@ -1,0 +1,29 @@
+----- GLOBALES -----
+VUE
+npm install -g @vue/cli
+
+QUASAR
+npm install -g @quasar/cli
+
+----- PROYECTO -----
+
+Instalar Vetur y Vue-Beautify para el VisualCode
+
+quasar create --->
+
+? Project name (internal usage for dev) gamemacher
+? Project product name (must start with letter if building mobile apps) GAME MACHER PRO
+? Project description bla
+? Author yo
+? Pick your favorite CSS preprocessor: (can be changed later) Sass
+? Pick a Quasar components & directives import strategy: (can be changed later) Manual
+? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection)ESLint
+? Pick an ESLint preset: Standard
+? Cordova/Capacitor id (disregard if not building mobile apps) ar.com.emanuel.gamemacher
+? Should we run `npm install` for you after the project has been created? (recommended) NPM
+
+VUEEX
+npm install vuex --save
+
+VUE ROUTER
+npm install --save vue-router
