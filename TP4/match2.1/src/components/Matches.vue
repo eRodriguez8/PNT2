@@ -24,15 +24,14 @@ export default {
         method: "GET",
         headers: headers
       })
-        .then(result => {
-          return result.json();
-        })
-        .then(result => {
-          result.forEach(element => {
-            this.games.push(element)         
-          });
-
+      .then(result => {
+        return result.json();
+      })
+      .then(result => {
+        result.forEach(element => {
+          this.games.push(element)         
         });
+      });
     }
   },
   beforeMount() {
