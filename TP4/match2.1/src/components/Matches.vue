@@ -1,9 +1,9 @@
 <template>
   <div class="matches">
     <ul>
-      <!-- <li v-for="game in games">
+      <li v-for="game in games">
         {{ game.name }} - {{ game.id }}
-      </li> -->
+      </li>
     </ul>
   </div>
 </template>
@@ -28,17 +28,10 @@ export default {
           return result.json();
         })
         .then(result => {
-          console.log("result")
-          console.log(result)
-          console.log("games")
-          console.log(this.games)
-          let list=[];
-          each(result, function(key, value) {
-              list.push(key);
+          result.forEach(element => {
+            this.games.push(element)         
           });
-          this.games = list
-          console.log("gamesCargados")
-          console.log(this.games)
+
         });
     }
   },
