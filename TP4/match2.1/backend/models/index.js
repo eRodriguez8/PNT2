@@ -39,6 +39,9 @@ db.sync = function () {
             }, {
                 id: 4,
                 name: 'Tetris'
+            }, {
+                id: 5,
+                name: 'Half-life 3'
             } ];
 
             games.forEach(game => {

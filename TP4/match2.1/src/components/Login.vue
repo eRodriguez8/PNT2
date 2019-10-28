@@ -1,13 +1,13 @@
 <template>
   <div class="login">
     <div>
-      <label for="producto">Username:</label>
+      <label for="username">Username:</label>
       <input
         type="text"
         v-model="username"
         class="custom-select-lg form-control browser-default mb-3"
       >
-      <label for="cantidad">Password:</label>
+      <label for="password">Password:</label>
       <input
         type="password"
         v-model="password"
@@ -20,13 +20,7 @@
         value="Login"
         type="button"
         class="btn form-control btn-primary"
-        v-on:click="checkUser()"
-      >
-      <input 
-        value="Register"
-        type="button"
-        class="btn form-control btn-primary"
-        v-on:click="registerUser()"
+        v-on:click="login()"
       >
     </div>
   </div>
@@ -42,55 +36,33 @@ export default {
         }
   },
   methods: {
-    checkUser: function() {
-        let data = {
-            username: this.username,
-            password: this.password
-        }
-
-        let headers = new Headers();
-        headers.set('Content-type', 'application/json');
-                
-        fetch('http://localhost:5000/api/login', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(data)
-        })
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function(datos) {
-          // console.log(datos);
-          return datos
-        })
-        .catch(function() {
-
-        });        
+    store: function(){
+      this.$store.commit('login', this.username, 'este es el token')
     },
     registerUser: function() {
-        let data = {
-            username: this.username,
-            password: this.password
+      this.$router.push('register')
+    },
+    match: function() {
+      this.$router.push('matches')
+    },
+    login: function () {
+      let headers = new Headers()
+      headers.set('Content-type', 'application/json')
+      let data = { 'username': this.username, 'password': this.password }
+      fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data)
+      }).then(result => {
+        return result.json()
+      }).then(result => {
+        if (result.success) {
+          this.store()
+          this.match()
+        } else {
+          this.registerUser()
         }
-
-        let headers = new Headers();
-        headers.set('Content-type', 'application/json');
-                
-        fetch('http://localhost:5000/api/user', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(data)
-        })
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function(datos) {
-          // console.log(datos);
-          return datos
-        })
-        .catch(function() {
-
-        });        
+      })
     }
   }
 };

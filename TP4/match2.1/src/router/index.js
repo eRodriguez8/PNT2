@@ -1,6 +1,7 @@
 import Router from 'vue-router'
 import Login from '../components/Login'
-import Home from '../components/Home'
+import Register from '../components/Register'
+import Matches from '../components/Matches'
 
 export default new Router({
     routes: [{
@@ -8,8 +9,12 @@ export default new Router({
             component: Login
         },
         {
-            path: '/home',
-            component: Home
+            path: '/register',
+            component: Register
+        },
+        {
+            path: '/matches',
+            component: Matches
         }
     ]
 })

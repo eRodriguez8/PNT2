@@ -15,12 +15,21 @@ router.get('/', (req, res) => {
 
         if (user) {
             user.setGames(games);
+            
+            matches = []
+            games.forEach(game => {
+                
+                models.User.findAll({
+                    where: {
+                        'Games.id': game.id
+                    }
+                }).then(users => {
 
-            // TODO: MATCHING THE GAMES
 
 
-
-
+                    
+                });
+            });
         }
     });
 

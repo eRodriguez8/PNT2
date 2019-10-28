@@ -22,8 +22,12 @@
     </div>
 
     <div class="">
-      <input value="Login" type="button" class="btn form-control btn-primary">
-      <input value="Register" type="button" class="btn form-control btn-primary">
+      <input 
+        value="Register" 
+        type="button" 
+        class="btn form-control btn-primary" 
+        v-on:click="register()"
+      >
     </div>
   </div>    
 </template>
@@ -31,10 +35,42 @@
 <script>
 export default {
   name: 'Regsiter',
-  props: {
-    username: String,
-    password: String,
-    email: String
+  data: function () {
+        return {
+            username: '',
+            password: '',
+            email: ''
+        }
+  },
+  methods: {
+    matches: function() {
+      this.$router.push('matches')
+    },
+    login: function() {
+      this.$router.push('login')
+    },
+    register: function () {
+      let headers = new Headers()
+      headers.set('Content-type', 'application/json')
+      let data = { 
+        'username': this.username,
+        'password': this.password,
+        'email': this.email
+      }
+      fetch('http://localhost:5000/api/user', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data)
+      }).then(result => {
+        return result.json()
+      }).then(result => {
+        if (result.success) {
+          this.login()
+        } else {
+          this.matches()
+        }
+      })
+    }
   }
 }
 </script>
