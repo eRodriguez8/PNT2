@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div>
+    <div class="form-group">
       <label for="username">Username:</label>
       <input
         type="text"
@@ -15,7 +15,7 @@
       >
     </div>
 
-    <div class>
+    <div class="form-group">
       <input
         value="Login"
         type="button"

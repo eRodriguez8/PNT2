@@ -1,10 +1,17 @@
 <template>
   <div class="matches">
-    <ul>
-      <li v-for="game in games">
-        {{ game.name }} - {{ game.id }}
-      </li>
-    </ul>
+    <div class="form-group">
+      <select class="form-control" @change="onChange($event)" v-model="idGameSelected">
+      <option :selected="true">--Seleccione--</option>
+      <option v-for="game in games" v-bind:value="game.id">{{ game.id }} - {{ game.name }}</option>
+    </select>
+    <input
+      value="Buscar"
+      type="button"
+      class="btn col-xs-4 btn-primary"
+      v-on:click="buscar()"
+    >
+    </div>
   </div>
 </template>
 
@@ -13,8 +20,9 @@ export default {
   name: "Matches",
   data: function() {
     return {
+      idGameSelected: -1,
       games: []
-    };
+    }
   },
   methods: {
     getJuegos: function() {
@@ -32,6 +40,14 @@ export default {
           this.games.push(element)         
         });
       });
+    },
+    buscar: function(){
+      if(this.idGameSelected != -1){
+        //enviar el seleccionado al backend
+      }
+    },
+    onChange(event) {
+      this.idGameSelected = event.target.value
     }
   },
   beforeMount() {
