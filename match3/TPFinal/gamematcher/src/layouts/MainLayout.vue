@@ -37,6 +37,26 @@
           </q-item-section>
         </q-item>
         <q-separator />
+        <q-item clickable v-on:click="crearJuego">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Crear Juego</q-item-label>
+            <q-item-label caption>quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator />
+        <q-item clickable v-on:click="crearUsuario">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Editar Usuarios</q-item-label>
+            <q-item-label caption>quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator />
         <q-item clickable v-on:click="logout">
           <q-item-section avatar>
             <q-icon name="exit_to_app" />
@@ -47,7 +67,6 @@
         </q-item>
       </q-list>
     </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -76,6 +95,24 @@ export default {
         icon: 'cloud_done',
         message: 'Ha cerrado sesión'
       })
+    },
+    crearJuego: function () {
+      this.$q.notify({
+        color: 'green-4',
+        textColor: 'white',
+        icon: 'cloud_done',
+        message: 'Crear Juego!'
+      })
+      this.$router.push('/games')
+    },
+    crearUsuario: function () {
+      this.$q.notify({
+        color: 'green-4',
+        textColor: 'white',
+        icon: 'cloud_done',
+        message: 'Crear Usuario!'
+      })
+      this.$router.push('/users')
     }
   }
 }

@@ -7,6 +7,12 @@ npm install -g @quasar/cli
 
 ----- PROYECTO -----
 
+VUEEX
+npm install vuex --save
+
+VUE ROUTER
+npm install --save vue-router
+
 Instalar Vetur y Vue-Beautify para el VisualCode
 
 quasar create --->
@@ -21,9 +27,3 @@ quasar create --->
 ? Pick an ESLint preset: Standard
 ? Cordova/Capacitor id (disregard if not building mobile apps) ar.com.emanuel.gamemacher
 ? Should we run `npm install` for you after the project has been created? (recommended) NPM
-
-VUEEX
-npm install vuex --save
-
-VUE ROUTER
-npm install --save vue-router

@@ -41,20 +41,19 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+    let id = req.params.id;
     let username = req.body.username;
     let password = req.body.password;
     let email = req.body.email;
 
-    models.User.update(
-        {
-            username,
-            password,
-            email
-        },
-        {
-            where: { id }
-        }
-    ).then(() => {
+    models.User.update({
+        username,
+        password,
+        email
+    },
+    {
+        where: { id }
+    }).then(() => {
         res.sendStatus(200);
     })
 });

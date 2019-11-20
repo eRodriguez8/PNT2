@@ -4,16 +4,12 @@ const routes = [
     path: '/',
     component: () => import('layouts/AppLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      { path: '/register', component: () => import('pages/RegisterLayout.vue') },
+      { path: '/matches', component: () => import('pages/MatchesLayout.vue') },
+      { path: '/games', component: () => import('pages/GamesLayout.vue') },
+      { path: '/users', component: () => import('pages/UsersLayout.vue') }
     ]
-  },
-  {
-    path: '/register',
-    component: () => import('pages/RegisterLayout.vue')
-  },
-  {
-    path: 'matches',
-    component: () => import('pages/MatchesLayout.vue')
   }
 ]
 

@@ -58,7 +58,8 @@ module.exports = function (ctx) {
         'QForm',
         'QInput',
         'QSeparator',
-        'QSpace'
+        'QSpace',
+        'QBtnDropdown'
       ],
 
       directives: [
