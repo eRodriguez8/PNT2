@@ -24,10 +24,7 @@ router.get('/', (req, res) => {
                         'Games.id': game.id
                     }
                 }).then(users => {
-
                     console.log(users);
-
-                    
                 });
             });
         }

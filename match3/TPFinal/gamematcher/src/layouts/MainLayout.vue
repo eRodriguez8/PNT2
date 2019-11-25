@@ -27,13 +27,12 @@
     >
       <q-list>
         <q-item-label header>Menu Principal</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item clickable v-on:click="jugar">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Jugar</q-item-label>
           </q-item-section>
         </q-item>
         <q-separator />
@@ -42,18 +41,25 @@
             <q-icon name="school" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Crear Juego</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Editar Juego</q-item-label>
           </q-item-section>
         </q-item>
         <q-separator />
-        <q-item clickable v-on:click="crearUsuario">
+        <q-item clickable v-on:click="editarUsuario">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Editar Usuarios</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator />
+        <q-item clickable v-on:click="menuPrincipal">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Menu Principal</q-item-label>
           </q-item-section>
         </q-item>
         <q-separator />
@@ -105,7 +111,7 @@ export default {
       })
       this.$router.push('/games')
     },
-    crearUsuario: function () {
+    editarUsuario: function () {
       this.$q.notify({
         color: 'green-4',
         textColor: 'white',
@@ -113,6 +119,12 @@ export default {
         message: 'Crear Usuario!'
       })
       this.$router.push('/users')
+    },
+    menuPrincipal: function () {
+      this.$router.push('/')
+    },
+    jugar: function () {
+      this.$router.push('/matches')
     }
   }
 }

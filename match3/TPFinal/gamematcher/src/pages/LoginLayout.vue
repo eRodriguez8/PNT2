@@ -4,27 +4,31 @@
       v-on:submit="login"
       v-on:reset="reset"
     >
-      <q-input
-        filled
-        v-model="username"
-        label="Usuario"
-        hint="Tu nombre de usuario"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Por favor ingrese su nombre de usuario']"
-      />
-      <q-input
-        filled
-        type="password"
-        v-model="password"
-        label="Contraseña"
-        hint="La contraseña con la que se registró"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Por favor ingrese su contraseña']"
-      />
-      <q-separator />
+      <div>
+        <q-input
+          filled
+          v-model="username"
+          label="Usuario"
+          hint="Tu nombre de usuario"
+          lazy-rules
+          :rules="[ val => val && val.length > 0 || 'Por favor ingrese su nombre de usuario']"
+        />
+        <q-input
+          filled
+          type="password"
+          v-model="password"
+          label="Contraseña"
+          hint="La contraseña con la que se registró"
+          lazy-rules
+          :rules="[ val => val && val.length > 0 || 'Por favor ingrese su contraseña']"
+        />
+      </div>
+      <div>
+        <q-separator/>
+      </div>
       <div class="q-gutter-y-md">
-        <q-btn label="Ingresar" type="submit" color="primary" class="rounded-borders"/>
         <q-btn label="Cancelar" type="reset" color="primary" flat class="q-ml-sm rounded-borders" />
+        <q-btn label="Ingresar" type="submit" color="primary" class="rounded-borders"/>
       </div>
     </q-form>
   </div>
