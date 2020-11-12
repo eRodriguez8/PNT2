@@ -27,3 +27,7 @@ quasar create --->
 ? Pick an ESLint preset: Standard
 ? Cordova/Capacitor id (disregard if not building mobile apps) ar.com.emanuel.gamemacher
 ? Should we run `npm install` for you after the project has been created? (recommended) NPM
+
+------------- CORDOVA ----------
+INSTALL APK EN EMULADOR
+C:\Users\eb6220\AppData\Local\Android\Sdk\platform-tools\adb.exe install app-release-unsigned.apk

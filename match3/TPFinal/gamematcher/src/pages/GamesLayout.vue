@@ -125,7 +125,6 @@ export default {
         let data = {
           name: this.name
         }
-        console.log(data)
         fetch('http://localhost:5000/api/game/' + this.selectedId, {
           method: 'PUT',
           headers: headers,

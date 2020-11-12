@@ -27,6 +27,15 @@
     >
       <q-list>
         <q-item-label header>Menu Principal</q-item-label>
+        <q-item clickable v-on:click="menuPrincipal">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Menu Principal</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator />
         <q-item clickable v-on:click="jugar">
           <q-item-section avatar>
             <q-icon name="school" />
@@ -51,15 +60,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Editar Usuarios</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-separator />
-        <q-item clickable v-on:click="menuPrincipal">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Menu Principal</q-item-label>
           </q-item-section>
         </q-item>
         <q-separator />

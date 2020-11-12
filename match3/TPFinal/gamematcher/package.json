@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "An app for gamers matching",
   "productName": "Game Matcher Pro",
-  "cordovaId": ".ar.com.gabriel.gamematcher",
+  "cordovaId": "ar.com.ema.gamematcher",
   "capacitorId": "",
-  "author": "Gabriel",
+  "author": "Emanuel",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "cordova:dev": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\""
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

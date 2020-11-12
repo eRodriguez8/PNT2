@@ -35,13 +35,17 @@
           :rules="[ val => val && val.length > 0 || 'Por favor ingrese su contraseña']"
         />
         <q-input
-        filled
-        type="email"
-        v-model="email"
-        label="Email"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Por favor ingrese su email']"
-      />
+          filled
+          type="email"
+          v-model="email"
+          label="Email"
+          lazy-rules
+          :rules="[ val => val && val.length > 0 || 'Por favor ingrese su email']"
+        />
+        <div>
+          <q-btn color="primary" label="Sacar Foto" @click="captureImage" />
+          <img :src="imageSrc">
+        </div>
         <q-separator />
         <div class="q-gutter-y-md">
           <q-btn label="Eliminar" type="button" color="primary" flat class="q-ml-sm rounded-borders"
@@ -104,6 +108,7 @@ export default {
       this.username = ''
       this.password = ''
       this.email = ''
+      this.selectedId = -1
     },
     getUsers: function () {
       let headers = new Headers()
@@ -153,7 +158,6 @@ export default {
           password: this.password,
           email: this.email
         }
-        console.log(data)
         fetch('http://localhost:5000/api/user/' + this.selectedId, {
           method: 'PUT',
           headers: headers,
@@ -166,7 +170,7 @@ export default {
               icon: 'power',
               message: 'Usuario Editado'
             })
-            this.getUsers()
+            this.$router.push('/')
           } else {
             this.$q.notify({
               color: 'red-4',
@@ -177,6 +181,19 @@ export default {
           }
         })
       }
+    },
+    captureImage: function () {
+      navigator.camera.getPicture(
+        data => { // on success
+          this.imageSrc = `data:image/jpeg;base64,${data}`
+        },
+        () => { // on fail
+          this.$q.notify('Could not access device camera.')
+        },
+        {
+          // camera options
+        }
+      )
     }
   },
   mounted () {

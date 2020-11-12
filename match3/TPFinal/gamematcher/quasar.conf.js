@@ -162,7 +162,7 @@ module.exports = function (ctx) {
 
     // https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
-      // id: '.ar.com.gabriel.gamematcher',
+      id: 'ar.com.ema.gamematcher',
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
     },
 
